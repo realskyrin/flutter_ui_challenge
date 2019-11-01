@@ -7,6 +7,8 @@ class DialogPage extends StatefulWidget {
 }
 
 class _DialogPageState extends State<DialogPage> {
+  bool _sheetShowing = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,6 +76,9 @@ class _DialogPageState extends State<DialogPage> {
               RaisedButton(
                 child: Text("Bottom Sheet"),
                 onPressed: (){
+                  if(_sheetShowing){
+                    Navigator.pop(context);
+                  }
                   showBottomSheet(
                     backgroundColor: Colors.green,
                     shape: RoundedRectangleBorder(
@@ -130,11 +135,14 @@ class _DialogPageState extends State<DialogPage> {
                             IconButton(
                                 icon: Icon(Icons.close,color: Colors.white), onPressed: () {
                                   Navigator.pop(context);
+                                  _sheetShowing = false;
                             }),
                             SizedBox(),
                           ],
                         ),
-                      ),);
+                      ),
+                  );
+                  _sheetShowing = true;
                 },
               ),
 
@@ -151,7 +159,7 @@ class _DialogPageState extends State<DialogPage> {
                         child: GridView.count(
                           primary: false,
                           shrinkWrap: true,
-                          crossAxisCount: 5,
+                          crossAxisCount: 4,
                           scrollDirection: Axis.vertical,
                           children: <Widget>[
                             IconButton(

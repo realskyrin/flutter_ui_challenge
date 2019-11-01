@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ui_challenge/widgets/card_page.dart';
 import 'package:ui_challenge/widgets/dialog_page.dart';
 import 'package:ui_challenge/widgets/image_page.dart';
 import 'package:ui_challenge/widgets/input_page.dart';
@@ -16,6 +17,7 @@ class Router{
   static const inputPage = 'app://InputPage';
   static const snackBar = 'app://SnackBar';
   static const dialogPage = 'app://DialogPage';
+  static const cardPage = 'app://CardPage';
   static const listViewPage = 'app://ListViewPage';
 
   Widget _getPage(String url, dynamic params) {
@@ -35,6 +37,8 @@ class Router{
           return SnackBarPage();
         case dialogPage:
           return DialogPage();
+        case cardPage:
+          return CardPage();
         case listViewPage:
           return ImagePage();
       }
