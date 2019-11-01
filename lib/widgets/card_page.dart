@@ -8,6 +8,8 @@ class CardPage extends StatefulWidget {
 }
 
 class _CardPageState extends State<CardPage> {
+  bool _toggleExpired = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,7 +78,7 @@ class _CardPageState extends State<CardPage> {
                                     TextSpan(
                                         text: "9.4",
                                         style: TextStyle(
-                                            color: Colors.amber,
+                                            color: Colors.amber[800],
                                             fontWeight: FontWeight.bold)),
                                     TextSpan(
                                         text: " | ",
@@ -157,7 +159,7 @@ class _CardPageState extends State<CardPage> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(8))),
               elevation: 3,
-              color: Colors.pink[400],
+              color: _getExpiredColor(),
               child: Row(
                 children: <Widget>[
                   Container(
@@ -175,13 +177,13 @@ class _CardPageState extends State<CardPage> {
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold)),
                           TextSpan(
-                              text: "6",
+                              text: "666",
                               style: TextStyle(
                                   fontSize: 24,
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold)),
                         ])),
-                        Text("满40.0元可用",
+                        Text("无门槛",
                             style: TextStyle(fontSize: 10, color: Colors.white))
                       ],
                     ),
@@ -189,7 +191,7 @@ class _CardPageState extends State<CardPage> {
                   Container(
                     height: 100,
                     width: 8,
-                    color: Colors.pink[400],
+                    color: _getExpiredColor(),
                     child: Stack(
                       alignment: Alignment.topRight,
                       children: <Widget>[
@@ -233,38 +235,42 @@ class _CardPageState extends State<CardPage> {
                               children: <Widget>[
                                 Text(
                                   "淘票票电影代金券",
-                                  style: TextStyle(fontSize: 15),
+                                  style: TextStyle(fontSize: 15,color: _getExpiredColor()),
                                 ),
                                 Row(
                                   children: <Widget>[
                                     _getTextWithBorder(
-                                        "限购电影票", Colors.black, 10, 2),
+                                        "限购电影票", _getExpiredColor(), 10, 2),
                                     SizedBox(
                                       width: 6,
                                     ),
                                     _getTextWithBorder(
-                                        "不可叠加", Colors.black, 10, 2),
+                                        "不可叠加", _getExpiredColor(), 10, 2),
                                   ],
                                 ),
                                 Text(
                                   "有效期至：2099-9-9",
-                                  style: TextStyle(fontSize: 12),
+                                  style: TextStyle(fontSize: 12,color: _getExpiredColor()),
                                 ),
                                 Text(
                                   "淘票票直连影城使用",
-                                  style: TextStyle(fontSize: 12),
+                                  style: TextStyle(fontSize: 12,color: _getExpiredColor()),
                                 ),
                               ],
                             ),
                             Expanded(flex: 1, child: SizedBox()),
-                            Container(
+                            _toggleExpired?
+                            _getExpired()
+                                :Container(
                               height: 24,
                               width: 60,
                               margin: EdgeInsets.only(right: 8),
                               alignment: Alignment.center,
                               child: OutlineButton(
                                 onPressed: () {
-                                  ///
+                                  setState(() {
+                                    _toggleExpired = !_toggleExpired;
+                                  });
                                 },
                                 child: Text(
                                   "使用",
@@ -279,10 +285,75 @@ class _CardPageState extends State<CardPage> {
                                 ),
                                 highlightedBorderColor: Colors.grey,
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ))
+                ],
+              ),
+            ),
+            Utils.getDividerMarginLRTB("Card With InkWell"),
+            Card(
+              margin: EdgeInsets.all(8),
+              color: Colors.green,
+              elevation: 0,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Container(
+                height: 100,
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(8),
+                  splashColor: Colors.amber,
+                  onTap: (){},
+                  child: Center(
+                    child: Text("Tap Me",style: TextStyle(color: Colors.white,fontSize: 20),),
+                  ),
+                ),
+              ),
+            ),
+            Utils.getDividerMarginLRTB("Card With Button"),
+            Card(
+              margin: EdgeInsets.all(8),
+              elevation: 3,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Stack(
+                    children: <Widget>[
+                      Positioned(
+                        child: ClipRRect(
+                          child: Image.asset("images/gem.jpeg",fit: BoxFit.fitHeight,),
+                          borderRadius: BorderRadius.only(topRight: Radius.circular(8),topLeft: Radius.circular(8)),
+                        ),
+                      ),
+                      Positioned(
+                        bottom: 16,
+                        left: 16,
+                        child: Text("G.E.M.",style: Theme.of(context).textTheme.headline.copyWith(color: Colors.white),),
+                      )
+                    ],
+                  ),
+                  ButtonBarTheme(
+                    data: ButtonBarThemeData(
+                      alignment: MainAxisAlignment.end
+                    ),
+                    child: ButtonBar(
+                      children: <Widget>[
+                        FlatButton(
+                          child: const Text('BUY TICKETS'),
+                          onPressed: () { /* ... */ },
+                        ),
+                        FlatButton(
+                          child: const Text('LISTEN'),
+                          onPressed: () { /* ... */ },
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             )
@@ -346,5 +417,48 @@ class _CardPageState extends State<CardPage> {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(3), color: Colors.white)),
     );
+  }
+
+  Widget _getExpired(){
+    return Stack(
+      alignment: Alignment.center,
+      children: <Widget>[
+        SizedBox(
+          width: 60,
+          height: 60,
+          child: DecoratedBox(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey, width: 1),
+                shape: BoxShape.circle
+              ),
+          ),
+        ),
+        SizedBox(
+          width: 35,
+          height: 35,
+          child: DecoratedBox(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey, width: 1),
+                shape: BoxShape.circle
+              ),
+          ),
+        ),
+        GestureDetector(
+          child: RotationTransition(
+            turns: AlwaysStoppedAnimation(25/360),
+            child: Text("已过期",style: TextStyle(fontWeight: FontWeight.bold,color:Colors.grey,backgroundColor: Colors.white),),
+          ),
+          onTap: (){
+            setState(() {
+              _toggleExpired = !_toggleExpired;
+            });
+          },
+        )
+      ],
+    );
+  }
+
+  Color _getExpiredColor(){
+    return _toggleExpired?Colors.grey:Colors.pink[400];
   }
 }
