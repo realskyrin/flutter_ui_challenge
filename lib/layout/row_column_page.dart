@@ -20,6 +20,8 @@ class _RowPageState extends State<RowPage> {
   CrossAxisAlignment _crossAxisAlignment = CrossAxisAlignment.center;
 
   /// 文字基准线
+  /// alphabetic(字母文字)
+  /// ideographic(表意文字)
   TextBaseline _textBaseline = TextBaseline.alphabetic;
 
   @override
@@ -28,7 +30,7 @@ class _RowPageState extends State<RowPage> {
       appBar: AppBar(
         title: Text(runtimeType
             .toString()
-            .substring(1, runtimeType.toString().length - 5)),
+            .substring(1, "State".length)),
       ),
       body: _getBody(),
       bottomNavigationBar: _getBottomBar(),
