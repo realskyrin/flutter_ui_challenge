@@ -12,12 +12,8 @@ class _ContainerPageState extends State<ContainerPage> {
       appBar: AppBar(
         title: Text(runtimeType.toString().substring(1,runtimeType.toString().length-5)),
       ),
-      body: Expanded(
-        child: GridView(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2
-          ),
-        ),
+      body: Container(
+
       ),
     );
   }

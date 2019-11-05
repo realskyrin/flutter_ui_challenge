@@ -9,6 +9,7 @@ class LayoutPage extends StatefulWidget {
 class _LayoutPageState extends State<LayoutPage> {
   List<String> titles = [
     "Container",
+    "Grid",
     "Expanded & Sizedbox",
     "Row & Column",
     "Stack",
