@@ -30,7 +30,7 @@ class _RowPageState extends State<RowPage> {
       appBar: AppBar(
         title: Text(runtimeType
             .toString()
-            .substring(1, "State".length)),
+            .substring(1, runtimeType.toString().length - "State".length)),
       ),
       body: _getBody(),
       bottomNavigationBar: _getBottomBar(),

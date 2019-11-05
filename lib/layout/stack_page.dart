@@ -7,6 +7,8 @@ class StackPage extends StatefulWidget {
 }
 
 class _StackPageState extends State<StackPage> {
+  AlignmentDirectional _alignment = AlignmentDirectional.center;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,10 +30,65 @@ class _StackPageState extends State<StackPage> {
             children: <Widget>[_getExpiredTag(), _getStampSeparation()],
           ),
           Utils.getDividerMarginLRTB("Showcase"),
+          Stack(
+            alignment: _alignment,
+//            fit: StackFit.loose,
+//            overflow: Overflow.clip,
+            children: <Widget>[
+              Container(
+                width: 300,
+                height: 300,
+                color: Colors.green,
+              ),
+              Container(
+                width: 200,
+                height: 200,
+                color: Colors.amber,
+              ),
+              Container(
+                width: 100,
+                height: 100,
+                color: Colors.blue,
+              ),
+            ],
+          )
         ],
       );
 
-  _getBottomBar() {}
+  _getBottomBar() {
+    const alignmentDirectionalVals = <String, AlignmentDirectional>{
+      'topStart': AlignmentDirectional.topStart,
+      'topCenter': AlignmentDirectional.topCenter,
+      'topEnd': AlignmentDirectional.topEnd,
+      'centerStart': AlignmentDirectional.centerStart,
+      'center': AlignmentDirectional.center,
+      'centerEnd': AlignmentDirectional.centerEnd,
+      'bottomStart': AlignmentDirectional.bottomStart,
+      'bottomCenter': AlignmentDirectional.bottomCenter,
+      'bottomEnd': AlignmentDirectional.bottomEnd,
+    };
+    return Container(
+      color: Colors.black12,
+      child: ListTile(
+        title: Text("alignment"),
+        trailing: DropdownButton(
+          value: _alignment,
+          items: alignmentDirectionalVals
+              .map((String name, AlignmentDirectional val) => MapEntry(
+                  name, DropdownMenuItem(value: val, child: Text(name))))
+              .values
+              .toList(),
+          onChanged: (newVal) {
+            if(newVal!=null){
+              setState(() {
+                this._alignment = newVal;
+              });
+            }
+          },
+        ),
+      ),
+    );
+  }
 
   Widget _getStampSeparation() => Container(
         height: 80,
