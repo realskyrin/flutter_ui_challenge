@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:ui_challenge/utils/utils.dart';
+import 'package:ui_challenge/utils.dart';
 
 class CardPage extends StatefulWidget {
   @override

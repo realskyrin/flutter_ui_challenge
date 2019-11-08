@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ui_challenge/utils/utils.dart';
+import 'package:ui_challenge/utils.dart';
 
 class ImagePage extends StatefulWidget {
   @override

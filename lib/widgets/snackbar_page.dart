@@ -1,7 +1,7 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
-import 'package:ui_challenge/utils/utils.dart';
+import 'package:ui_challenge/utils.dart';
 
 class SnackBarPage extends StatefulWidget {
   @override

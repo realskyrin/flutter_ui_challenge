@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ui_challenge/animations/animation_tween_page.dart';
 import 'package:ui_challenge/layout/expanded_sizedbox_page.dart';
 import 'package:ui_challenge/layout/grid_page.dart';
 import 'package:ui_challenge/layout/row_column_page.dart';
@@ -32,6 +33,12 @@ class Router{
   static const wrapPage = "Wrap";
   static const gridPage = "Grid";
 
+  static const animationTweenPage = "Animation & Tween";
+  static const opacityPage = "Opacity";
+  static const heroPage = "Hero";
+  static const staggeredPage = "Staggered";
+  static const animatedContainerPage = "AnimatedContainer";
+
   Widget _getPage(String url, dynamic params) {
     if (url.startsWith('https://') || url.startsWith('http://')) {
 //      return WebViewPage(url, params: params);
@@ -64,6 +71,16 @@ class Router{
         case wrapPage:
           return WrapPage();
         case gridPage:
+          return GridPage();
+        case animationTweenPage:
+          return AnimationTweenPage();
+        case opacityPage:
+          return GridPage();
+        case heroPage:
+          return GridPage();
+        case staggeredPage:
+          return GridPage();
+        case animatedContainerPage:
           return GridPage();
       }
     }
