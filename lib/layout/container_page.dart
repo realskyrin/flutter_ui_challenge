@@ -33,7 +33,8 @@ class _ContainerPageState extends State<ContainerPage> {
       ),
       body: Container(
         padding: EdgeInsets.all(_padding),
-        margin: EdgeInsets.all(_margin),
+        /// 对称边距：horizontal 左右对称，vertical 上下对称，以下代码等效于 EdgeInsets.all(_margin)
+        margin: EdgeInsets.symmetric(horizontal: _margin,vertical: _margin),
         color: bgColor,
         alignment: alignment,
         child: Container(

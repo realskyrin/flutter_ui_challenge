@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class AnimatedCurvesPage extends StatefulWidget {
+class AnimatedWidgetPage extends StatefulWidget {
   @override
-  _AnimatedCurvesPageState createState() => _AnimatedCurvesPageState();
+  _AnimatedWidgetPageState createState() => _AnimatedWidgetPageState();
 }
 
-class _AnimatedCurvesPageState extends State<AnimatedCurvesPage>
+class _AnimatedWidgetPageState extends State<AnimatedWidgetPage>
     with SingleTickerProviderStateMixin {
   Animation<double> animation;
   AnimationController controller;
@@ -16,7 +16,14 @@ class _AnimatedCurvesPageState extends State<AnimatedCurvesPage>
     super.initState();
     controller =
         AnimationController(duration: Duration(seconds: 2), vsync: this);
-    animation = CurvedAnimation(parent: controller,curve: Curves.elasticOut);
+    animation = Tween<double>(begin: 0, end: 300).animate(controller)
+      ..addStatusListener((status) => {
+        if (status == AnimationStatus.completed)
+          {controller.reverse()}
+        else if (status == AnimationStatus.dismissed)
+          {controller.forward()}
+      });
+
     /// 正向执行动画
     controller.forward();
   }
@@ -91,8 +98,6 @@ class _AnimatedCurvesPageState extends State<AnimatedCurvesPage>
 }
 
 class AnimatedLogo extends AnimatedWidget {
-  static final _sizeTween = Tween<double>(begin: 0,end: 300);
-
   AnimatedLogo({Key key, Animation<double> animation})
       : super(key: key, listenable: animation);
 
@@ -101,8 +106,8 @@ class AnimatedLogo extends AnimatedWidget {
     final am = listenable as Animation<double>;
     return Container(
       child: FlutterLogo(),
-      width: 300,
-      height: _sizeTween.evaluate(am),
+      width: am.value,
+      height: am.value,
     );
   }
 }

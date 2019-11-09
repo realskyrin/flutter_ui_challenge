@@ -9,6 +9,7 @@ class _AnimationTweenPageState extends State<AnimationTweenPage>
     with SingleTickerProviderStateMixin {
   Animation<double> animation;
   AnimationController controller;
+  AnimationStatus status;
 
   @override
   void initState() {
@@ -19,7 +20,14 @@ class _AnimationTweenPageState extends State<AnimationTweenPage>
       ..addListener(() {
         /// 当 Animation.value 变化时被调用
         setState(() {});
-      });
+      })
+      ..addStatusListener((status) => this.status = status);
+//      ..addStatusListener((status) => {
+//            if (status == AnimationStatus.completed)
+//              {controller.reverse()}
+//            else if (status == AnimationStatus.dismissed)
+//              {controller.forward()}
+//          });
 
     /// 正向执行动画
     controller.forward();
@@ -34,8 +42,10 @@ class _AnimationTweenPageState extends State<AnimationTweenPage>
             .substring(1, runtimeType.toString().length - "State".length)),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text("value: ${animation.value.toInt()}"),
+          Text("state: $status"),
           Container(
             child: FlutterLogo(),
             width: animation.value,
@@ -67,7 +77,7 @@ class _AnimationTweenPageState extends State<AnimationTweenPage>
                 Icon(Icons.forward),
               ],
             ),
-            onPressed: (){
+            onPressed: () {
               controller.forward();
             },
           ),
@@ -81,7 +91,7 @@ class _AnimationTweenPageState extends State<AnimationTweenPage>
                 ),
               ],
             ),
-            onPressed: (){
+            onPressed: () {
               /// 逆向执行动画
               controller.reverse();
             },

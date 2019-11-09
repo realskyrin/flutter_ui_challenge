@@ -7,15 +7,26 @@ class AnimationPage extends StatefulWidget {
 }
 
 class _AnimationPageState extends State<AnimationPage> {
-  List<String> titles = ["Animation & Tween","Opacity", "Hero", "Staggered", "AnimatedContainer"];
+  List<String> titles = [
+    Router.animationTween,
+    Router.animatedWidget,
+    Router.animatedBuilder,
+    Router.curvedAnimation,
+    Router.opacity,
+    Router.hero,
+    Router.staggered,
+    Router.animatedContainer
+  ];
 
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
         itemBuilder: (ctx, index) {
           return GestureDetector(
-            child: ListTile(title: Text(titles[index]),),
-            onTap: (){
+            child: ListTile(
+              title: Text(titles[index]),
+            ),
+            onTap: () {
               Router.pushNoParams(context, titles[index]);
             },
           );
@@ -23,7 +34,6 @@ class _AnimationPageState extends State<AnimationPage> {
         separatorBuilder: (ctx, index) {
           return Divider();
         },
-        itemCount: titles.length
-    );
+        itemCount: titles.length);
   }
 }

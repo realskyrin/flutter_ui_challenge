@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
-class AnimatedCurvesPage extends StatefulWidget {
+class AnimatedBuilderPage extends StatefulWidget {
   @override
-  _AnimatedCurvesPageState createState() => _AnimatedCurvesPageState();
+  _AnimatedBuilderPageState createState() => _AnimatedBuilderPageState();
 }
 
-class _AnimatedCurvesPageState extends State<AnimatedCurvesPage>
-    with SingleTickerProviderStateMixin {
+class _AnimatedBuilderPageState extends State<AnimatedBuilderPage> with SingleTickerProviderStateMixin{
   Animation<double> animation;
   AnimationController controller;
   AnimationStatus status;
@@ -16,9 +15,22 @@ class _AnimatedCurvesPageState extends State<AnimatedCurvesPage>
     super.initState();
     controller =
         AnimationController(duration: Duration(seconds: 2), vsync: this);
-    animation = CurvedAnimation(parent: controller,curve: Curves.elasticOut);
+    animation = Tween<double>(begin: 0, end: 300).animate(controller)
+      ..addStatusListener((status) => {
+        if (status == AnimationStatus.completed)
+          {controller.reverse()}
+        else if (status == AnimationStatus.dismissed)
+          {controller.forward()}
+      });
+
     /// 正向执行动画
     controller.forward();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -36,20 +48,14 @@ class _AnimatedCurvesPageState extends State<AnimatedCurvesPage>
           Text("value: ${animation.value.toInt()}"),
           /// 没有调用 setState，所以不会被刷新
           Text("state: $status"),
-          AnimatedLogo(
+          GrowTransition(
+            child: LogoWidget(),
             animation: animation,
           )
         ],
       ),
       bottomNavigationBar: _getBottomBar(),
     );
-  }
-
-  @override
-  void dispose() {
-    /// 释放 controller 对象使用的资源，调用该方法后 controller 将不可用
-    controller.dispose();
-    super.dispose();
   }
 
   _getBottomBar() {
@@ -90,19 +96,34 @@ class _AnimatedCurvesPageState extends State<AnimatedCurvesPage>
   }
 }
 
-class AnimatedLogo extends AnimatedWidget {
-  static final _sizeTween = Tween<double>(begin: 0,end: 300);
-
-  AnimatedLogo({Key key, Animation<double> animation})
-      : super(key: key, listenable: animation);
-
+class LogoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final am = listenable as Animation<double>;
     return Container(
+      margin: EdgeInsets.symmetric(vertical: 10),
       child: FlutterLogo(),
-      width: 300,
-      height: _sizeTween.evaluate(am),
     );
   }
 }
+
+class GrowTransition extends StatelessWidget {
+  GrowTransition({this.child,this.animation});
+
+  final Widget child;
+  final Animation<double> animation;
+
+  @override
+  Widget build(BuildContext context) => Center(
+    child: AnimatedBuilder(
+      animation: animation,
+      child: child,
+      builder: (context,widget) => Container(
+        height: animation.value,
+        width: animation.value,
+        child: widget,
+      ),
+    ),
+  );
+}
+
+

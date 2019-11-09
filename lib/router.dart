@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ui_challenge/animations/animation_curves_page.dart';
 import 'package:ui_challenge/animations/animation_tween_page.dart';
 import 'package:ui_challenge/layout/expanded_sizedbox_page.dart';
 import 'package:ui_challenge/layout/grid_page.dart';
@@ -12,6 +13,8 @@ import 'package:ui_challenge/widgets/input_page.dart';
 import 'package:ui_challenge/widgets/snackbar_page.dart';
 import 'package:ui_challenge/widgets/text_page.dart';
 
+import 'animations/animated_builder_page.dart';
+import 'animations/animated_widget_page.dart';
 import 'layout/container_page.dart';
 import 'widgets/button_page.dart';
 
@@ -33,11 +36,14 @@ class Router{
   static const wrapPage = "Wrap";
   static const gridPage = "Grid";
 
-  static const animationTweenPage = "Animation & Tween";
-  static const opacityPage = "Opacity";
-  static const heroPage = "Hero";
-  static const staggeredPage = "Staggered";
-  static const animatedContainerPage = "AnimatedContainer";
+  static const animationTween = "Animation & Tween";
+  static const animatedWidget = "AnimatedWidget";
+  static const animatedBuilder = "AnimatedBuilder";
+  static const curvedAnimation = "CurvedAnimation";
+  static const opacity = "Opacity";
+  static const hero = "Hero";
+  static const staggered = "Staggered";
+  static const animatedContainer = "AnimatedContainer";
 
   Widget _getPage(String url, dynamic params) {
     if (url.startsWith('https://') || url.startsWith('http://')) {
@@ -72,15 +78,21 @@ class Router{
           return WrapPage();
         case gridPage:
           return GridPage();
-        case animationTweenPage:
+        case animationTween:
           return AnimationTweenPage();
-        case opacityPage:
+        case animatedWidget:
+          return AnimatedWidgetPage();
+        case animatedBuilder:
+          return AnimatedBuilderPage();
+        case curvedAnimation:
+          return AnimatedCurvesPage();
+        case opacity:
           return GridPage();
-        case heroPage:
+        case hero:
           return GridPage();
-        case staggeredPage:
+        case staggered:
           return GridPage();
-        case animatedContainerPage:
+        case animatedContainer:
           return GridPage();
       }
     }
