@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ui_challenge/animations/animation_curves_page.dart';
 import 'package:ui_challenge/animations/animation_tween_page.dart';
+import 'package:ui_challenge/animations/hero_page.dart';
+import 'package:ui_challenge/animations/opacity_page.dart';
 import 'package:ui_challenge/layout/expanded_sizedbox_page.dart';
 import 'package:ui_challenge/layout/grid_page.dart';
 import 'package:ui_challenge/layout/row_column_page.dart';
@@ -87,9 +89,9 @@ class Router{
         case curvedAnimation:
           return AnimatedCurvesPage();
         case opacity:
-          return GridPage();
+          return OpacityPage();
         case hero:
-          return GridPage();
+          return HeroPage();
         case staggered:
           return GridPage();
         case animatedContainer:
