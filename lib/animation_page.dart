@@ -14,6 +14,7 @@ class _AnimationPageState extends State<AnimationPage> {
     Router.curvedAnimation,
     Router.opacity,
     Router.hero,
+    Router.radialExpansion,
     Router.staggered,
     Router.animatedContainer
   ];

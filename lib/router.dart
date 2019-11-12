@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ui_challenge/animations/animation_curves_page.dart';
 import 'package:ui_challenge/animations/animation_tween_page.dart';
-import 'package:ui_challenge/animations/hero_page.dart';
+import 'package:ui_challenge/animations/standard_hero_page.dart';
 import 'package:ui_challenge/animations/opacity_page.dart';
 import 'package:ui_challenge/layout/expanded_sizedbox_page.dart';
 import 'package:ui_challenge/layout/grid_page.dart';
@@ -17,6 +17,7 @@ import 'package:ui_challenge/widgets/text_page.dart';
 
 import 'animations/animated_builder_page.dart';
 import 'animations/animated_widget_page.dart';
+import 'animations/radial_hero_page.dart';
 import 'layout/container_page.dart';
 import 'widgets/button_page.dart';
 
@@ -44,6 +45,7 @@ class Router{
   static const curvedAnimation = "CurvedAnimation";
   static const opacity = "Opacity";
   static const hero = "Hero";
+  static const radialExpansion = "RadialExpansion";
   static const staggered = "Staggered";
   static const animatedContainer = "AnimatedContainer";
 
@@ -92,6 +94,8 @@ class Router{
           return OpacityPage();
         case hero:
           return HeroPage();
+        case radialExpansion:
+          return RadialExpansionDemo();
         case staggered:
           return GridPage();
         case animatedContainer:
