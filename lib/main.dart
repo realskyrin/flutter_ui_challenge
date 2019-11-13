@@ -9,11 +9,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'UIChanllenge',
+      title: 'UIChallenge',
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: MyHomePage(title: 'Flutter UI Chanllenge'),
+      home: MyHomePage(title: 'Flutter UI Challenge'),
     );
   }
 }
