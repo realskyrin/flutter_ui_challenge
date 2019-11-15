@@ -30,9 +30,7 @@ class _ImagePageState extends State<ImagePage> {
             SizedBox(height: 16,),
             Utils.getDividerMarginLR("Image"),
             SizedBox(height: 16,),
-            Image.network(
-              "https://skyrin.oss-cn-qingdao.aliyuncs.com/images/app_demo/flutter.png",
-            ),
+            FadeInImage.assetNetwork(placeholder: 'images/loading.gif', image: "https://skyrin.oss-cn-qingdao.aliyuncs.com/images/app_demo/flutter.png"),
             SizedBox(height: 16,),
             Image.asset("images/flutter.jpg"),
             SizedBox(height: 16,),

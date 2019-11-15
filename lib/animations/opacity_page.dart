@@ -10,8 +10,13 @@ class _OpacityPageState extends State<OpacityPage>
   Animation animation;
   AnimationController controller;
 
+  _OpacityPageState(){
+    print(">>>>>>构造方法>>>>>>");
+  }
+
   @override
   void initState() {
+    print(">>>>>>initState>>>>>>");
     super.initState();
     controller = AnimationController(duration: Duration(seconds: 2),vsync: this);
     animation = CurvedAnimation(parent: controller,curve: Curves.easeInOut);
@@ -19,13 +24,35 @@ class _OpacityPageState extends State<OpacityPage>
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    print(">>>>>>didChangeDependencies>>>>>>");
+  }
+
+  @override
   void dispose() {
+    print(">>>>>>dispose>>>>>>");
     controller.dispose();
     super.dispose();
   }
 
   @override
+  void didUpdateWidget(OpacityPage oldWidget) {
+    // TODO: implement didUpdateWidget
+    super.didUpdateWidget(oldWidget);
+    print(">>>>>>didUpdateWidget>>>>>>");
+  }
+
+  @override
+  void deactivate() {
+    // TODO: implement deactivate
+    super.deactivate();
+    print(">>>>>>deactivate>>>>>>");
+  }
+
+  @override
   Widget build(BuildContext context) {
+    print(">>>>>>build>>>>>>");
     return Scaffold(
       appBar: AppBar(
         title: Text(runtimeType
