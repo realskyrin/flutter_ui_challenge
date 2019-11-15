@@ -10,6 +10,7 @@ import 'package:ui_challenge/layout/stack_page.dart';
 import 'package:ui_challenge/layout/wrap_page.dart';
 import 'package:ui_challenge/widgets/card_page.dart';
 import 'package:ui_challenge/widgets/dialog_page.dart';
+import 'package:ui_challenge/widgets/gesture_page.dart';
 import 'package:ui_challenge/widgets/image_page.dart';
 import 'package:ui_challenge/widgets/input_page.dart';
 import 'package:ui_challenge/widgets/snackbar_page.dart';
@@ -30,6 +31,7 @@ class Router{
   static const snackBar = 'app://SnackBar';
   static const dialogPage = 'app://DialogPage';
   static const cardPage = 'app://CardPage';
+  static const gesturePage = 'app://GesturePage';
   static const listViewPage = 'app://ListViewPage';
 
   static const containerPage = "Container";
@@ -68,6 +70,8 @@ class Router{
           return DialogPage();
         case cardPage:
           return CardPage();
+        case gesturePage:
+          return GesturePage();
         case listViewPage:
           return ImagePage();
         case containerPage:

@@ -80,6 +80,16 @@ class WidgetPage extends StatelessWidget {
             child: const Center(child: Text('Card & Inkwell',style: TextStyle(color: Colors.white))),
           ),
         ),
+        GestureDetector(
+          onTap: (){
+            Router.pushNoParams(context, Router.gesturePage);
+          },
+          child: Container(
+            height: 50,
+            color: Colors.green[300],
+            child: const Center(child: Text('Gesture',style: TextStyle(color: Colors.white))),
+          ),
+        ),
       ],
     );
   }
