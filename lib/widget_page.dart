@@ -86,7 +86,7 @@ class WidgetPage extends StatelessWidget {
           },
           child: Container(
             height: 50,
-            color: Colors.green[300],
+            color: Colors.green[400],
             child: const Center(child: Text('Gesture',style: TextStyle(color: Colors.white))),
           ),
         ),

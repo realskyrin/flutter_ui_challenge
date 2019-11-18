@@ -13,7 +13,8 @@ class _LayoutPageState extends State<LayoutPage> {
     "Expanded & Sizedbox",
     "Row & Column",
     "Stack",
-    "Wrap"
+    "Wrap",
+    "Route & Aguments"
   ];
 
   @override

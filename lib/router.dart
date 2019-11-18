@@ -5,6 +5,7 @@ import 'package:ui_challenge/animations/standard_hero_page.dart';
 import 'package:ui_challenge/animations/opacity_page.dart';
 import 'package:ui_challenge/layout/expanded_sizedbox_page.dart';
 import 'package:ui_challenge/layout/grid_page.dart';
+import 'package:ui_challenge/layout/route_arguments_page.dart';
 import 'package:ui_challenge/layout/row_column_page.dart';
 import 'package:ui_challenge/layout/stack_page.dart';
 import 'package:ui_challenge/layout/wrap_page.dart';
@@ -40,6 +41,7 @@ class Router{
   static const stackPage = "Stack";
   static const wrapPage = "Wrap";
   static const gridPage = "Grid";
+  static const routeArgument = "Route & Aguments";
 
   static const animationTween = "Animation & Tween";
   static const animatedWidget = "AnimatedWidget";
@@ -104,6 +106,8 @@ class Router{
           return GridPage();
         case animatedContainer:
           return GridPage();
+        case routeArgument:
+          return RouteArgument();
       }
     }
     return null;
